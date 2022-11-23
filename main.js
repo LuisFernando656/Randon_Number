@@ -5,7 +5,6 @@ const screen1 = document.querySelector('.screen1')
 const screen2 = document.querySelector('.screen2')
 let randonNumber = Math.round(Math.random() * 10)
 let xAtempts = 1
-console.log(randonNumber)
 
 //Eventos
 btnTry.addEventListener('click', handleTryClick)
