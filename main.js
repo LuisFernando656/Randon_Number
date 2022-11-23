@@ -17,19 +17,20 @@ function handleTryClick(event) {
 
   const inputNumber = document.querySelector('#inputNumber')
 
-  if (inputNumber.value >= 0 && inputNumber.value <= 10 && inputNumber.value != '') {
+  if (inputNumber.value < 0 || inputNumber.value > 10 || inputNumber.value == '') {
+    alert('Número inválido, Tente novamente!')
+  }else {
     if (+inputNumber.value == randonNumber) {
       toggleScreen()
       screen2.querySelector(
         'h2'
       ).innerHTML = `Acertou em ${xAtempts} tentativas`
     } else {
-      clearFocus()
+      inputNumber.value = ''
+      inputNumber.focus()
     }
 
     xAtempts++
-  }else {
-    alert('Número inválido, Tente novamente!')
   }
 }
 
@@ -39,15 +40,10 @@ function enterClick(e) {
   }
 }
 
-const clearFocus = () => {
-  inputNumber.value = ''
-  inputNumber.focus()
-}
-
 function handleAgainClick() {
   toggleScreen()
   xAtempts = 1
-  clearFocus()
+  inputNumber.focus()
   randonNumber = Math.round(Math.random() * 10)
 }
 
