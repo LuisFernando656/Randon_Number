@@ -5,6 +5,7 @@ const screen1 = document.querySelector('.screen1')
 const screen2 = document.querySelector('.screen2')
 let randonNumber = Math.round(Math.random() * 10)
 let xAtempts = 1
+console.log(randonNumber)
 
 //Eventos
 btnTry.addEventListener('click', handleTryClick)
@@ -16,22 +17,23 @@ function handleTryClick(event) {
   event.preventDefault()
 
   const inputNumber = document.querySelector('#inputNumber')
+  let insertNumber = inputNumber.value
 
-  if (inputNumber.value < 0 || inputNumber.value > 10 || inputNumber.value == '') {
+  if (insertNumber < 0 || insertNumber > 10 || insertNumber == '') {
     alert('Número inválido, Tente novamente!')
+    inputNumber.value = ''
   }else {
     if (+inputNumber.value == randonNumber) {
       toggleScreen()
       screen2.querySelector(
         'h2'
-      ).innerHTML = `Acertou em ${xAtempts} tentativas`
-    } else {
-      inputNumber.value = ''
-      inputNumber.focus()
+        ).innerHTML = `Acertou em ${xAtempts} tentativas o número ${randonNumber}`
+      } else {
+        inputNumber.value = ''
+        inputNumber.focus()
+        xAtempts++ 
+      }
     }
-
-    xAtempts++
-  }
 }
 
 function enterClick(e) {
@@ -42,7 +44,7 @@ function enterClick(e) {
 
 function handleAgainClick() {
   toggleScreen()
-  xAtempts = 1
+  xAtempts = 0
   inputNumber.focus()
   randonNumber = Math.round(Math.random() * 10)
 }
